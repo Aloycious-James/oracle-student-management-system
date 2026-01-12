@@ -1,0 +1,10 @@
+CREATE OR REPLACE TRIGGER trg_validate_age
+BEFORE INSERT OR UPDATE
+ON students
+FOR EACH ROW
+BEGIN
+   IF :NEW.age < 5 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'Age must be at least 5');
+   END IF;
+END;
+/
